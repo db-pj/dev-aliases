@@ -6,6 +6,150 @@ alias sites="cd /home/sites/ && l"
 alias feed-status=" watch -n 1 php /home/sites/cd.pj.passprotect.me/public_html/wp-content/themes/tdr-framework-child/functions/scripts/status-feeds.php"
 alias export-status=" watch -n 1 php /home/sites/cd.pj.passprotect.me/public_html/wp-content/themes/tdr-framework-child/functions/scripts/status-export.php"
 
+
+# SET DEV ENVIRONMENT
+function sde() {
+    case "$1" in
+    'da')
+        DESIGNATOR='da'
+        SITE_NAME='DatingAdvice.com'
+        S3_BUCKET='DatingAdvice.com-Backups'
+        WP_DIR="/home/sites/da.pj.passprotect.me/public_html/wp-content"
+        DESKTOP_THEME="tdr-framework-child"
+        MOBILE_THEME="mobile"
+        echo "Environment Set: $SITE_NAME" 
+    ;;
+    esac
+}
+
+function set_aliases() {
+   # Theme Directories
+    DESKTOP_DIR="$WP_DIR/themes/$DESKTOP_THEME"
+    MOBILE_DIR="$WP_DIR/themes/$MOBILE_THEME"
+
+    # Task Directories
+    CRON_DIR="$DESKTOP_DIR/functions/cron"
+    WARMER_DIR="$DESKTOP_DIR/functions/warmer"
+    SITEMAPS_DIR="$DESKTOP_DIR/functions/sitemap" 
+
+    #  ALIASES
+#*****************************************************************************/
+
+    #  NAVIGATION
+    #*****************************************************************************/
+    alias wpc="cd $WP_DIR"
+    alias cdw="cd $WP_DIR"
+
+    alias wpd="cd $DESKTOP_DIR"
+    alias cdd="cd $DESKTOP_DIR"
+
+    alias wpm="cd $MOBILE_DIR"
+    alias cdm="cd $MOBILE_DIR"
+
+    #  DATABASE
+    #*****************************************************************************/
+    alias backup-database="php $WP_DIR/backups/database-backup.php"
+    alias database-backup="backup-database"
+
+    #  CRON
+    #*****************************************************************************/
+    alias cronlog='tail -f -n 50 $(  ls -t $CRON_DIR/logs/cron-* | head -1 )'
+    alias cronedit='vim $(  ls -t $CRON_DIR/logs/cron-* | head -1 )'
+    alias crondir='cd $CRON_DIR'
+    alias cronlogdir='cd $CRON_DIR/logs/'
+
+    #  WARMER / SITEMAPS
+    #*****************************************************************************/
+    alias warm=warm_cache
+    alias warmerdir='cd $WARMER_DIR'
+    alias sitemapsdir='cd $SITEMAPS_DIR'
+
+    #  VARNISH
+    #*****************************************************************************/
+    alias vcl='vim /etc/varnish/default.vcl'
+    alias rv='sudo service varnish reload'
+    alias recache=recache
+    
+    #  LOGS
+    #*****************************************************************************/
+    alias errorlog='tail -f -n 75 $WP_DIR/../../logs/error.log'
+    alias accesslog='tail -f -n 75 $WP_DIR/../../logs/access.log'
+
+    #  MISC
+    #*****************************************************************************/
+    alias buildassets="cd $WP_DIR && source $WP_DIR/build-assets && cd -"
+    alias scripts="cd $DESKTOP_DIR/functions/scripts/"
+    alias help=show_help
+
+
+#  FUNCTIONS
+#*****************************************************************************/
+
+# Warm Cache
+function warm_cache() {
+    user="$(whoami)"
+    sudo su db-admin -c "php $WARMER_DIR/build-warmer-sitemaps.php && php $WARMER_DIR/warm-cache.php ${user} $1 $2"
+}
+
+# Purge and Recache Given URL
+function recache() {
+   php $DESKTOP_DIR/functions/purge-and-recache/purge-and-recache-cli.php $1
+}
+
+# Show Help
+function show_help() {
+bold=$(tput bold)
+normal=$(tput sgr0)
+
+echo "${normal}
+${bold}Aliases Help${normal}
+${bold}Navigation${normal}
+-------------------------------------------------------
+wp          Navigate to WordPress wp-content/ directory    
+wpd         Navigate to Desktop theme directory
+wpm         Navigate to Mobile theme directory
+cdw         Navigate to WordPress wpcontent/ directory
+cdd         Navigate to Desktop theme directory
+cdm         Navigate to Mobile theme directory
+crondir     Navigate to cron directory
+cronlogdir  Navigate to cron log directory
+warmerdir   Navigate to warmer directory
+sitemapsdir Navigate to sitemaps directory
+scripts     Navigate to Desktop theme scripts/ directory
+${bold}Assets${normal}
+-------------------------------------------------------
+buildassets  Builds CSS & JS for all themes
+${bold}Cron${normal}
+-------------------------------------------------------
+cronlog     Monitors the cron log
+cronedit    Open latest cron log in vim
+crondir     Navigate to cron directory
+cronlogdir  Navigate to cron log directory
+${bold}Database${normal}
+-------------------------------------------------------
+backup-database  Back up current database and send to S3
+database-backup  Back up current database and send to S3
+${bold}Logs${normal}
+-------------------------------------------------------
+errorlog   Monitors the error log
+accesslog  Monitors the access log
+${bold}Varnish${normal}
+-------------------------------------------------------
+vcl            Edit the Varnish VCL file
+rv             Reload Varnish
+recache [URL]  Purge and recache the given URL
+${bold}Warmer/Sitemaps${normal}
+-------------------------------------------------------
+warm        Starts the warmer
+warmerdir   Navigate to warmer directory
+sitemapsdir Navigate to sitemaps directory
+${bold}Misc${normal}
+-------------------------------------------------------
+help  Show help";
+}
+
+}
+
 # DATINGADVICE ALIASES
 # #########################################
 DA_DEV_DIR="/home/sites/da.pj.passprotect.me/public_html/wp-content"
