@@ -160,6 +160,7 @@ alias wpc-dam="cd /home/sites/da.pj.passprotect.me.mbl/public_html/wp-content/"
 alias varnish-da="sudo ln -s -f $DA_DEV_DIR/themes/tdr-framework-child/functions/cache-sitemap/varnish_setup/default.vcl /etc/varnish/default.vcl && sudo service varnish reload"
 alias en-da="sudo a2dissite da.pj.passprotect.me && ra && sudo a2ensite da.pj.passprotect.me && ra && varnish-da && sudo curl -X PURGE da.pj.passprotect.me"
 alias s3da="aws s3 ls --human-readable --summarize DatingAdvice.com-Backups"
+alias s3da-west="aws s3 ls --human-readable --summarize west-datingadvice.com-backups"
 
 # PRINTAHOLIC ALIASES
 # #########################################
@@ -171,6 +172,7 @@ alias makecss-pr="python $PR_DEV_DIR/themes/tdr-framework-child/makefile-css.py"
 alias makejs-pr="python $PR_DEV_DIR/themes/tdr-framework-child/makefile-js.py"
 alias varnish-pr="sudo ln -s -f $PR_DEV_DIR/themes/tdr-framework-child/functions/cache_sitemap/varnish_setup/default.vcl /etc/varnish/default.vcl"
 alias s3pr="aws s3 ls --human-readable --summarize Printaholic.com-Backups"
+alias s3pr-west="aws s3 ls --human-readable --summarize west-printaholic.com-backups"
 
 # COUPONS ALIASES
 # #########################################
@@ -183,6 +185,7 @@ alias makecss-cdm="lessc $CD_DEV_DIR/themes/tdr-framework-mobile/less/mobile.les
 alias makejs-cd="python $CD_DEV_DIR/themes/tdr-framework-child/makefile-js.py"
 alias varnish-cd="sudo ln -s -f $CD_DEV_DIR/themes/tdr-framework-child/functions/cache_sitemap/varnish_setup/default.vcl /etc/varnish/default.vcl"
 alias s3cd="aws s3 ls --human-readable --summarize CouponsDaily.com-Backups"
+alias s3cd-west="aws s3 ls --human-readable --summarize west-couponsdaily.com-backups"
 
 # CARDRATES ALIASES
 # #########################################
@@ -196,6 +199,7 @@ alias makejs-cr="python $CR_DEV_DIR/themes/tdr-framework-child/makefile-js.py"
 alias varnish-cr="sudo ln -s -f $CR_DEV_DIR/themes/cardreviews/functions/cache_sitemap/varnish_setup/default.vcl /etc/varnish/default.vcl"
 alias cr-update="cd $CR_DEV_DIR/themes/cardreviews/functions/scripts/ && php cr-update.php && cd -"
 alias s3cr="aws s3 ls --human-readable --summarize CardReviews.com-Backups"
+alias s3cr-west="aws s3 ls --human-readable --summarize west-cardreviews.com-backups"
 
 # BADCREDIT ALIASES
 # #########################################
@@ -209,6 +213,7 @@ alias makejs-bc="python $BC_DEV_DIR/themes/tdr-framework-child/makefile-js.py"
 alias varnish-bc="sudo ln -s -f $BC_DEV_DIR/themes/tdr-framework-child/functions/cache-sitemap/varnish_setup/default.vcl /etc/varnish/default.vcl"
 alias en-bc="sudo a2dissite bc.pj.passprotect.me && ra && sudo a2ensite bc.pj.passprotect.me && ra && varnish-bc && rv && sudo curl -X PURGE bc.pj.passprotect.me"
 alias s3bc="aws s3 ls --human-readable --summarize BadCredit.org-Backups"
+alias s3bc-west="aws s3 ls --human-readable --summarize west-badcredit.org-backups"
 
 # DIGITALBRANDS ALIASES
 # #########################################
@@ -220,6 +225,7 @@ alias varnish-db="sudo ln -s -f $DB_DEV_DIR/themes/digitalbrands/functions/cache
 alias db-update-mobile="cd $DB_DEV_DIR/themes/db-mobile/functions/scripts/ && php db-update-mobile.php && cd -"
 alias en-db="sudo a2dissite db.pj.passprotect.me && ra && sudo a2ensite db.pj.passprotect.me && ra && varnish-db && rv && sudo curl -X PURGE db.pj.passprotect.me"
 alias s3db="aws s3 ls --human-readable --summarize DigitalBrands.com-Backups"
+alias s3db-west="aws s3 ls --human-readable --summarize west-digitalbrands.com-backups"
 
 # GAINESVILLESHOWS ALIASES
 # #########################################
@@ -230,6 +236,7 @@ alias wpc-gvs="cd $GVS_DEV_DIR"
 alias varnish-gvs="sudo ln -s -f $GVS_DEV_DIR/themes/gainesvilleshows/functions/varnish/default.vcl /etc/varnish/default.vcl"
 alias gvs="mosh gainesvilleshows.com"
 alias s3gvs="aws s3 ls --human-readable --summarize GainesvilleShows-Backups"
+alias s3gvs-west="aws s3 ls --human-readable --summarize west-gainesvilleshows-backups"
 
 # HOSTINGADVICE ALIASES
 # #########################################
@@ -239,6 +246,7 @@ alias cd-ha="cd $HA_DEV_DIR"
 alias wpc-ha="cd $HA_DEV_DIR"
 alias varnish-ha="sudo ln -s -f $HA_DEV_DIR/themes/hostingadvice/functions/cache_sitemap/varnish_setup/default.vcl /etc/varnish/default.vcl"
 alias s3ha="aws s3 ls --human-readable --summarize HostingAdvice-Backups"
+alias s3ha-west="aws s3 ls --human-readable --summarize west-hostingadvice-backups"
 
 # DEALCRUNCH ALIASES
 # #########################################
@@ -249,3 +257,4 @@ alias wpc-dc="cd $DC_DEV_DIR"
 alias varnish-dc="sudo ln -s -f $DC_DEV_DIR/themes/dealcrunch/functions/varnish/default.vcl /etc/varnish/default.vcl"
 alias dc-update="cd $DC_DEV_DIR/themes/dealcrunch/functions/scripts/ && php dc-update.php && cd -"
 alias s3dc="aws s3 ls --human-readable --summarize dealcrunch-backups"
+alias s3dc-west="aws s3 ls --human-readable --summarize west-dealcrunch-backups"
