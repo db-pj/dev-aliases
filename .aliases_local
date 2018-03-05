@@ -152,7 +152,7 @@ help  Show help";
 
 # DATINGADVICE ALIASES
 # #########################################
-DA_DEV_DIR="/home/sites/da.pj.passprotect.me/public_html/wp-content"
+DA_DEV_DIR="/home/sites/da.pj.passprotect.me/"
 alias cdda="cd $DA_DEV_DIR"
 alias cd-da="cd $DA_DEV_DIR"
 alias wpc-da="cd $DA_DEV_DIR"
@@ -161,6 +161,16 @@ alias varnish-da="sudo ln -s -f $DA_DEV_DIR/themes/tdr-framework-child/functions
 alias en-da="sudo a2dissite da.pj.passprotect.me && ra && sudo a2ensite da.pj.passprotect.me && ra && varnish-da && sudo curl -X PURGE da.pj.passprotect.me"
 alias s3da="aws s3 ls --human-readable --summarize DatingAdvice.com-Backups"
 alias s3da-west="aws s3 ls --human-readable --summarize west-datingadvice.com-backups"
+alias da-update="cd $DA_DEV_DIR/themes/tdr-framework-child/functions/scripts/ && php da-update.php && cd -"
+#
+# DATINGNEWS ALIASES
+# #########################################
+DN_DEV_DIR="/home/sites/dn.pj.passprotect.me/"
+alias cddn="cd $DN_DEV_DIR"
+alias cd-dn="cd $DN_DEV_DIR"
+alias wpc-dn="cd $DN_DEV_DIR"
+alias wpc-dnm="cd /home/sites/da.pj.passprotect.me.mbl/public_html/wp-content/"
+#alias en-dn="sudo a2dissite dn.pj.passprotect.me && ra && sudo a2ensite dn.pj.passprotect.me && ra && varnish-dn && sudo curl -X PURGE dn.pj.passprotect.me"
 
 # PRINTAHOLIC ALIASES
 # #########################################
@@ -247,6 +257,7 @@ alias wpc-ha="cd $HA_DEV_DIR"
 alias varnish-ha="sudo ln -s -f $HA_DEV_DIR/themes/hostingadvice/functions/cache_sitemap/varnish_setup/default.vcl /etc/varnish/default.vcl"
 alias s3ha="aws s3 ls --human-readable --summarize HostingAdvice-Backups"
 alias s3ha-west="aws s3 ls --human-readable --summarize west-hostingadvice-backups"
+alias ha-update="cd $HA_DEV_DIR/themes/hostingadvice/functions/scripts/ && php ha-update.php && cd -"
 
 # DEALCRUNCH ALIASES
 # #########################################
